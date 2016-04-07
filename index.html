@@ -400,10 +400,13 @@ text.active {
   <option value="group">by Cluster</option>
 </select>
 
-<p>tag1: <span id="x-name"></span>
-<p>tag2: <span id="y-name"></span>
-<p>count: <span id="z-name"></span>
-<p>cluster: <span id="z-name"></span>
+<p>tag 1: <span id="x-name"></span>
+<p>cluster 1: <span id="x-cluster"></span>
+
+<p>tag 2: <span id="y-name"></span>
+<p>cluster 2: <span id="y-cluster"></span>
+
+<p>count: <span id="z-count"></span>
 
 <p>Built with <a href="http://d3js.org/">d3.js</a>.
 </aside>
@@ -442,10 +445,11 @@ d3.json("stackoverflow.json", function(stackoverflow) {
 
   // Convert links to matrix; count character occurrences.
   stackoverflow.links.forEach(function(link) {
-    matrix[link.source][link.target].v += link.value;
-    matrix[link.target][link.source].v += link.value;
-    matrix[link.source][link.source].v += link.value;
-    matrix[link.target][link.target].v += link.value;
+    matrix[link.source][link.target].v = link.value;
+    matrix[link.target][link.source].v = link.value;
+    //No need to track the diagonal node
+    //matrix[link.source][link.source].v = link.value;
+    //matrix[link.target][link.target].v = link.value;
 
     matrix[link.source][link.target].z += Math.log10(link.value);
     matrix[link.target][link.source].z += Math.log10(link.value);
@@ -522,10 +526,22 @@ d3.json("stackoverflow.json", function(stackoverflow) {
   function mouseover(p) {
     d3.selectAll(".row text").classed("active", function(d, i) { return i == p.y; });
     d3.selectAll(".column text").classed("active", function(d, i) { return i == p.x; });
+    // Custom code goes here
+    // nodes[p.x].group/name and nodes[p.y].group/name and node[p.v] 
+    document.getElementById('x-name').innerHTML = nodes[p.x].name;
+    document.getElementById('x-cluster').innerHTML = clusters[nodes[p.x].group - 1];
+    document.getElementById('y-name').innerHTML = nodes[p.y].name;
+    document.getElementById('y-cluster').innerHTML = clusters[nodes[p.y].group - 1];
+    document.getElementById('z-count').innerHTML = nodes[p.y].v; // should be same as nodes[p.x].v
   }
 
   function mouseout() {
     d3.selectAll("text").classed("active", false);
+    document.getElementById('x-name').innerHTML = '';
+    document.getElementById('x-cluster').innerHTML = '';
+    document.getElementById('y-name').innerHTML = '';
+    document.getElementById('y-cluster').innerHTML = '';
+    document.getElementById('z-count').innerHTML = '';
   }
 
   d3.select("#order").on("change", function() {
