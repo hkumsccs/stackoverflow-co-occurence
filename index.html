@@ -400,13 +400,13 @@ text.active {
   <option value="group">by Cluster</option>
 </select>
 
-<p>tag 1: <span id="x-name"></span>
-<p>cluster 1: <span id="x-cluster"></span>
+<p>Tag 1: <span id="x-name"></span>
+<p>Cluster 1: <span id="x-cluster"></span>
 
-<p>tag 2: <span id="y-name"></span>
-<p>cluster 2: <span id="y-cluster"></span>
+<p>Tag 2: <span id="y-name"></span>
+<p>Cluster 2: <span id="y-cluster"></span>
 
-<p>count: <span id="z-count"></span>
+<p>Count: <span id="z-count"></span>
 
 <p>Built with <a href="http://d3js.org/">d3.js</a>.
 </aside>
@@ -445,8 +445,8 @@ d3.json("stackoverflow.json", function(stackoverflow) {
 
   // Convert links to matrix; count character occurrences.
   stackoverflow.links.forEach(function(link) {
-    matrix[link.source][link.target].v = link.value;
-    matrix[link.target][link.source].v = link.value;
+    matrix[link.source][link.target].v += link.value;
+    matrix[link.target][link.source].v += link.value;
     //No need to track the diagonal node
     //matrix[link.source][link.source].v = link.value;
     //matrix[link.target][link.target].v = link.value;
