@@ -440,12 +440,12 @@ d3.json("stackoverflow.json", function(miserables) {
 
   // Convert links to matrix; count character occurrences.
   miserables.links.forEach(function(link) {
-    matrix[link.source][link.target].z += link.value;
-    matrix[link.target][link.source].z += link.value;
-    matrix[link.source][link.source].z += link.value;
-    matrix[link.target][link.target].z += link.value;
-    nodes[link.source].count += link.value;
-    nodes[link.target].count += link.value;
+    matrix[link.source][link.target].z += Math.log10(link.value);
+    matrix[link.target][link.source].z += Math.log10(link.value);
+    matrix[link.source][link.source].z += Math.log10(link.value);
+    matrix[link.target][link.target].z += Math.log10(link.value);
+    nodes[link.source].count += Math.log10(link.value);
+    nodes[link.target].count += Math.log10(link.value);
   });
 
   // Precompute the orders.
