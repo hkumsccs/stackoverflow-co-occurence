@@ -436,7 +436,7 @@ d3.json("stackoverflow.json", function(stackoverflow) {
   nodes = stackoverflow.nodes; // exposed
   var n = nodes.length;
 
-  // Compute index per node.
+  // Compute index per node
   nodes.forEach(function(node, i) {
     node.index = i;
     node.count = 0;
@@ -532,7 +532,7 @@ d3.json("stackoverflow.json", function(stackoverflow) {
     document.getElementById('x-cluster').innerHTML = clusters[nodes[p.x].group - 1];
     document.getElementById('y-name').innerHTML = nodes[p.y].name;
     document.getElementById('y-cluster').innerHTML = clusters[nodes[p.y].group - 1];
-    document.getElementById('z-count').innerHTML = nodes[p.y].v; // should be same as nodes[p.x].v
+    document.getElementById('z-count').innerHTML = p.v; // should be same as nodes[p.x].v
   }
 
   function mouseout() {
