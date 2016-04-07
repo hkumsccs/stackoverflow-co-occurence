@@ -445,12 +445,12 @@ d3.json("stackoverflow.json", function(stackoverflow) {
 
   // Convert links to matrix; count character occurrences.
   stackoverflow.links.forEach(function(link) {
-    matrix[link.source][link.target].z += Math.log10(link.value);
-    matrix[link.target][link.source].z += Math.log10(link.value);
+    matrix[link.source][link.target].z += Math.log2(link.value);
+    matrix[link.target][link.source].z += Math.log2(link.value);
     //matrix[link.source][link.source].z += Math.log10(link.value);
     //matrix[link.target][link.target].z += Math.log10(link.value);
-    matrix[link.source][link.source].z = 0;
-    matrix[link.target][link.target].z = 0;
+    matrix[link.source][link.source].z += 0;
+    matrix[link.target][link.target].z += 0;
     nodes[link.source].count += Math.log10(link.value);
     nodes[link.target].count += Math.log10(link.value);
   });
