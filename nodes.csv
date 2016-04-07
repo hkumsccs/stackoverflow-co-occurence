@@ -1,0 +1,76 @@
+name,group,group_name,cluster_order,id
+javascript,1,web-frontend,1,0
+java,6,java & android,2,1
+php,4,php-backend,3,2
+android,6,java & android,4,3
+c#,8,.net,5,4
+jquery,1,web-frontend,6,5
+python,5,general-programming-rocks,7,6
+html,1,web-frontend,8,7
+ios,3,ios & osx,9,8
+css,1,web-frontend,10,9
+c++,5,general-programming-rocks,11,10
+mysql,4,php-backend,12,11
+angularjs,1,web-frontend,13,12
+sql,8,.net,14,13
+arrays,5,general-programming-rocks,15,14
+swift,3,ios & osx,16,15
+c,5,general-programming-rocks,17,16
+ruby-on-rails,7,ror,18,17
+objective-c,3,ios & osx,19,18
+r,5,general-programming-rocks,20,19
+asp.net,8,.net,21,20
+json,6,java & android,22,21
+node.js,2,node-backend,23,22
+sql-server,8,.net,24,23
+ruby,7,ror,25,24
+regex,5,general-programming-rocks,26,25
+ajax,1,web-frontend,27,26
+linux,5,general-programming-rocks,28,27
+xml,6,java & android,29,28
+asp.net-mvc,8,.net,30,29
+.net,8,.net,31,30
+excel,9,excel-vba,32,31
+django,5,general-programming-rocks,33,32
+wordpress,4,php-backend,34,33
+spring,6,java & android,35,34
+twitter-bootstrap,1,web-frontend,36,35
+database,4,php-backend,37,36
+string,5,general-programming-rocks,38,37
+xcode,3,ios & osx,39,38
+html5,1,web-frontend,40,39
+eclipse,6,java & android,41,40
+wpf,8,.net,42,41
+mongodb,2,node-backend,43,42
+vba,9,excel-vba,44,43
+vb.net,8,.net,45,44
+matlab,5,general-programming-rocks,46,45
+windows,5,general-programming-rocks,47,46
+bash,5,general-programming-rocks,48,47
+multithreading,6,java & android,49,48
+oracle,8,.net,50,49
+python-2.7,5,general-programming-rocks,51,50
+git,5,general-programming-rocks,52,51
+laravel,4,php-backend,53,52
+forms,4,php-backend,54,53
+excel-vba,9,excel-vba,55,54
+apache,4,php-backend,56,55
+osx,3,ios & osx,57,56
+image,6,java & android,58,57
+iphone,3,ios & osx,59,58
+postgresql,8,.net,60,59
+algorithm,5,general-programming-rocks,61,60
+css3,1,web-frontend,62,61
+scala,6,java & android,63,62
+facebook,6,java & android,64,63
+list,5,general-programming-rocks,65,64
+cordova,6,java & android,66,65
+entity-framework,8,.net,67,66
+rest,6,java & android,68,67
+symfony2,4,php-backend,69,68
+ruby-on-rails-4,7,ror,70,69
+swing,6,java & android,71,70
+.htaccess,4,php-backend,72,71
+android-studio,6,java & android,73,72
+function,5,general-programming-rocks,74,73
+hibernate,6,java & android,75,74
