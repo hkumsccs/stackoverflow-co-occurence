@@ -423,7 +423,7 @@ var margin = {top: 80, right: 0, bottom: 10, left: 80},
 var x = d3.scale.ordinal().rangeBands([0, width]),
     z = d3.scale.linear().domain([0, 4]).clamp(true),
     //c = d3.scale.category20b().domain(d3.range(9));
-    c = d3.scale.category20b();
+    c = ['#EC5f67', '#F99157', '#FAC863', '#99C794', '#5FB3B3', '#6699CC', '#C594C5', '#AB7967', '#EC5f67'];
 
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -513,7 +513,7 @@ d3.json("stackoverflow.json", function(stackoverflow) {
         .attr("width", x.rangeBand())
         .attr("height", x.rangeBand())
         .style("fill-opacity", function(d) { return z(d.z); })
-        .style("fill", function(d) { return nodes[d.x].group == nodes[d.y].group ? c(nodes[d.x].group) : null; })
+        .style("fill", function(d) { return nodes[d.x].group == nodes[d.y].group ? c[nodes[d.x].group] : null; })
         .on("mouseover", mouseover)
         .on("mouseout", mouseout);
   }
