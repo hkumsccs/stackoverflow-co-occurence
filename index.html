@@ -449,8 +449,8 @@ d3.json("stackoverflow.json", function(stackoverflow) {
   stackoverflow.links.forEach(function(link) {
     matrix[link.source][link.target].z += Math.log10(link.value);
     matrix[link.target][link.source].z += Math.log10(link.value);
-    //matrix[link.source][link.source].z += Math.log10(link.value);
-    //matrix[link.target][link.target].z += Math.log10(link.value);
+    matrix[link.source][link.source].z += Math.log10(link.value);
+    matrix[link.target][link.target].z += Math.log10(link.value);
     matrix[link.source][link.source].z += 0;
     matrix[link.target][link.target].z += 0;
     nodes[link.source].count += Math.log10(link.value);
@@ -514,7 +514,7 @@ d3.json("stackoverflow.json", function(stackoverflow) {
         .attr("width", x.rangeBand())
         .attr("height", x.rangeBand())
         .style("fill-opacity", function(d) { return z(d.z); })
-        .style("fill", function(d) { return nodes[d.x].group == nodes[d.y].group ? c[nodes[d.x].group] : null; })
+        .style("fill", function(d) { return nodes[d.x].group == nodes[d.y].group ? c[nodes[d.x].group] : '#757575'; })
         .on("mouseover", mouseover)
         .on("mouseout", mouseout);
   }
