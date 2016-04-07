@@ -400,6 +400,11 @@ text.active {
   <option value="group">by Cluster</option>
 </select>
 
+<p>tag1: <span id="x-name"></span>
+<p>tag2: <span id="y-name"></span>
+<p>count: <span id="z-name"></span>
+<p>cluster: <span id="z-name"></span>
+
 <p>Built with <a href="http://d3js.org/">d3.js</a>.
 </aside>
 
@@ -407,14 +412,14 @@ text.active {
 
 var margin = {top: 80, right: 0, bottom: 10, left: 80},
     width = 720,
-    height = 720,
-    exposedMatrix;
+    height = 720;
 
 var x = d3.scale.ordinal().rangeBands([0, width]),
     z = d3.scale.linear().domain([0, 4]).clamp(true),
     //c = d3.scale.category20b().domain(d3.range(9));
     //c = ['#EC5f67', '#F99157', '#FAC863', '#99C794', '#5FB3B3', '#6699CC', '#C594C5', '#AB7967', '#EC5f67'];
-    c = ['#B71C1C', '#880E4F', '#4A148C', '#311B92', '#0D47A1', '#1B5E20', '#F57F17', '#E65100', '#BF360C'];
+    c = ['#B71C1C', '#880E4F', '#4A148C', '#311B92', '#0D47A1', '#1B5E20', '#F57F17', '#E65100', '#BF360C'],
+    clusters = ["Web Frontend", "Java & Android", "General Programming", ".NET", "PHP", "iOS & OSX", "RoR", "Excel & VBA","Node.js"]
 
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -426,18 +431,22 @@ var svg = d3.select("body").append("svg")
 d3.json("stackoverflow.json", function(stackoverflow) {
   var matrix = [],
       nodes = stackoverflow.nodes,
-      n = nodes.length,
-      exposedMatrix = matrix;
+      n = nodes.length;
 
   // Compute index per node.
   nodes.forEach(function(node, i) {
     node.index = i;
     node.count = 0;
-    matrix[i] = d3.range(n).map(function(j) { return {x: j, y: i, z: 0}; });
+    matrix[i] = d3.range(n).map(function(j) { return {x: j, y: i, z: 0, g: node.group || '-'}; });
   });
 
   // Convert links to matrix; count character occurrences.
   stackoverflow.links.forEach(function(link) {
+    matrix[link.source][link.target].v += link.value;
+    matrix[link.target][link.source].v += link.value;
+    matrix[link.source][link.source].v += link.value;
+    matrix[link.target][link.target].v += link.value;
+
     matrix[link.source][link.target].z += Math.log10(link.value);
     matrix[link.target][link.source].z += Math.log10(link.value);
     matrix[link.source][link.source].z += Math.log10(link.value);
@@ -532,7 +541,7 @@ d3.json("stackoverflow.json", function(stackoverflow) {
   function order(value) {
     x.domain(orders[value]);
 
-    var t = svg.transition().duration(2500);
+    var t = svg.transition().duration(2000);
 
     t.selectAll(".row")
         .delay(function(d, i) { return x(i) * 4; })
