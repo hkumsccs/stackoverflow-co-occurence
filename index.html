@@ -399,7 +399,12 @@ text.active {
   <option value="count">by Frequency</option>
   <option value="group">by Cluster</option>
 </select>
-
+<!--
+<p>Log base: <select id="log">
+  <option value="2">2</option>
+  <option value="10">10</option>
+</select>
+-->
 <p>This matrix diagram visualizes character co-occurrences in Victor Hugo’s <i><a href="http://en.wikipedia.org/wiki/Les_Misérables">Les Misérables</a></i>.
 
 <p>Each colored cell represents two characters that appeared in the same chapter; darker cells indicate characters that co-occurred more frequently.
@@ -426,9 +431,9 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.json("stackoverflow.json", function(miserables) {
+d3.json("stackoverflow.json", function(stackoverflow) {
   var matrix = [],
-      nodes = miserables.nodes,
+      nodes = stackoverflow.nodes,
       n = nodes.length;
 
   // Compute index per node.
@@ -439,11 +444,13 @@ d3.json("stackoverflow.json", function(miserables) {
   });
 
   // Convert links to matrix; count character occurrences.
-  miserables.links.forEach(function(link) {
+  stackoverflow.links.forEach(function(link) {
     matrix[link.source][link.target].z += Math.log10(link.value);
     matrix[link.target][link.source].z += Math.log10(link.value);
-    matrix[link.source][link.source].z += Math.log10(link.value);
-    matrix[link.target][link.target].z += Math.log10(link.value);
+    //matrix[link.source][link.source].z += Math.log10(link.value);
+    //matrix[link.target][link.target].z += Math.log10(link.value);
+    matrix[link.source][link.source].z = 0;
+    matrix[link.target][link.target].z = 0;
     nodes[link.source].count += Math.log10(link.value);
     nodes[link.target].count += Math.log10(link.value);
   });
@@ -465,7 +472,7 @@ d3.json("stackoverflow.json", function(miserables) {
 
   var row = svg.selectAll(".row")
       .data(matrix)
-    .enter().append("g")
+      .enter().append("g")
       .attr("class", "row")
       .attr("transform", function(d, i) { return "translate(0," + x(i) + ")"; })
       .each(row);
@@ -522,6 +529,11 @@ d3.json("stackoverflow.json", function(miserables) {
   d3.select("#order").on("change", function() {
     clearTimeout(timeout);
     order(this.value);
+  });
+
+  d3.select("#log").on("change", function() {
+    clearTimeout(timeout);
+    logBase(this.value);
   });
 
   function order(value) {
