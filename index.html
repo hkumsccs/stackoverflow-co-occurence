@@ -422,7 +422,8 @@ var margin = {top: 80, right: 0, bottom: 10, left: 80},
 
 var x = d3.scale.ordinal().rangeBands([0, width]),
     z = d3.scale.linear().domain([0, 4]).clamp(true),
-    c = d3.scale.category20b().domain(d3.range(9));
+    //c = d3.scale.category20b().domain(d3.range(9));
+    c = d3.scale.category20b();
 
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
