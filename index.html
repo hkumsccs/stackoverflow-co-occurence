@@ -423,7 +423,8 @@ var margin = {top: 80, right: 0, bottom: 10, left: 80},
 var x = d3.scale.ordinal().rangeBands([0, width]),
     z = d3.scale.linear().domain([0, 4]).clamp(true),
     //c = d3.scale.category20b().domain(d3.range(9));
-    c = ['#EC5f67', '#F99157', '#FAC863', '#99C794', '#5FB3B3', '#6699CC', '#C594C5', '#AB7967', '#EC5f67'];
+    //c = ['#EC5f67', '#F99157', '#FAC863', '#99C794', '#5FB3B3', '#6699CC', '#C594C5', '#AB7967', '#EC5f67'];
+    c = ['#B71C1C', '#880E4F', '#4A148C', '#311B92', '#0D47A1', '#1B5E20', '#F57F17', '#E65100', '#BF360C'];
 
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
