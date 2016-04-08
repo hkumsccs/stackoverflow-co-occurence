@@ -475,8 +475,6 @@ d3.json("stackoverflow.json", function(stackoverflow) {
     matrix[link.target][link.source].z += Math.log10(link.value);
     matrix[link.source][link.source].z += Math.log10(link.value);
     matrix[link.target][link.target].z += Math.log10(link.value);
-    matrix[link.source][link.source].z += 0;
-    matrix[link.target][link.target].z += 0;
     nodes[link.source].count += Math.log10(link.value);
     nodes[link.target].count += Math.log10(link.value);
   });
@@ -485,7 +483,7 @@ d3.json("stackoverflow.json", function(stackoverflow) {
   var orders = {
     name: d3.range(n).sort(function(a, b) { return d3.ascending(nodes[a].name, nodes[b].name); }),
     count: d3.range(n).sort(function(a, b) { return nodes[b].count - nodes[a].count; }),
-    group: d3.range(n).sort(function(a, b) { return nodes[b].group - nodes[a].group; })
+    group: d3.range(n).sort(function(a, b) { return nodes[a].group - nodes[b].group; })
   };
 
   // The default sort order.
