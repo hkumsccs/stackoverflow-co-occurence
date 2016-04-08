@@ -485,7 +485,7 @@ d3.json("stackoverflow.json", function(stackoverflow) {
   var orders = {
     name: d3.range(n).sort(function(a, b) { return d3.ascending(nodes[a].name, nodes[b].name); }),
     count: d3.range(n).sort(function(a, b) { return nodes[b].count - nodes[a].count; }),
-    group: d3.range(n).sort(function(a, b) { return nodes[a].group - nodes[b].group; })
+    group: d3.range(n).sort(function(a, b) { return nodes[b].group - nodes[a].group; })
   };
 
   // The default sort order.
